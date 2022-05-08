@@ -237,9 +237,9 @@ fn main() {
         if use_hip {
             println!("cargo:rustc-link-lib=torch_hip");
         }
-        println!("cargo:rustc-link-lib=torch_cpu");
-        println!("cargo:rustc-link-lib=torch");
-        println!("cargo:rustc-link-lib=c10");
+        println!("cargo:rustc-link-lib=static=torch_cpu");
+        println!("cargo:rustc-link-lib=static=torch");
+        println!("cargo:rustc-link-lib=static=c10");
         if use_hip {
             println!("cargo:rustc-link-lib=c10_hip");
         }
@@ -247,7 +247,7 @@ fn main() {
         let target = env::var("TARGET").unwrap();
 
         if !target.contains("msvc") && !target.contains("apple") {
-            println!("cargo:rustc-link-lib=gomp");
+            //println!("cargo:rustc-link-lib=gomp");
         }
     }
 }
